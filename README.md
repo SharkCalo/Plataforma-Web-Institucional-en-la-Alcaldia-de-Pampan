@@ -1,8 +1,8 @@
 
-# Plataforma Web Institucional - Alcaldía del Municipio Pampán
+# Plataforma Web - Alcaldía del Municipio Pampán
 
-> **Proyecto Universitario - PNFI**  
-
+> **Proyecto Universitario - PNFI**
+# **Por :** *Jean Carlos Saavedra*
 > Diseño, desarrollo e implementación de una plataforma web institucional para centralizar información, automatizar la gestión de trámites y optimizar la comunicación con los ciudadanos del Municipio Pampán.
 
 ---
