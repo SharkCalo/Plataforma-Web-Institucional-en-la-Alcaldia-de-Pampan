@@ -1,51 +1,42 @@
+# 🏛️ Proyecto: Página Web para la Alcaldía
 
-# Plataforma Web - Alcaldía del Municipio Pampán
-
-> **Proyecto Universitario - PNFI**
-# **Por :** *Jean Carlos Saavedra*
-> Diseño, desarrollo e implementación de una plataforma web institucional para centralizar información, automatizar la gestión de trámites y optimizar la comunicación con los ciudadanos del Municipio Pampán.
+Este proyecto es una página web para que los habitantes del municipio puedan hacer sus trámites y solicitudes desde la computadora o el teléfono, sin necesidad de hacer largas colas en la alcaldía.
 
 ---
 
-## 📌 1. Objetivo del Proyecto
-El objetivo principal de esta plataforma es transformar la gestión interna de la alcaldía y mejorar la atención ciudadana. El sistema busca:
-*   Eliminar la burocracia y el uso excesivo de papel mediante la digitalización.
-*   Centralizar las solicitudes en un único repositorio digital accesible.
-*   Ofrecer transparencia a los ciudadanos permitiéndoles consultar el estado de sus trámites en tiempo real.
+## 👥 1. ¿Quiénes usan la página? (Roles)
+
+En el sistema existen tres tipos de usuarios:
+
+*   **👤 El Ciudadano :** Es cualquier persona del municipio. Entra a la página para pedir una ayuda, reportar un problema de luz/agua, o solicitar un permiso.
+*   **💼 Trabajador de la alcaldía:** Es la persona que trabaja en una oficina de la alcaldía (como Catastro o Desarrollo Social). Revisa lo que pidió el ciudadano y decide si lo aprueba o lo rechaza.
+*   **⚙️ El Administrador (El técnico):** Es la persona encargada de que la página funcione. Crea las cuentas de los trabajadores y registra las oficinas.
 
 ---
 
-## 👥 2. Roles del Sistema (Actores)
+## 🧠 2. ¿Cómo funciona el sistema? (Reglas de Negocio)
 
-Para garantizar la seguridad y el principio de menor privilegio, el sistema cuenta con tres niveles de acceso claramente definidos:
+Para que todo funcione en orden, el software sigue estas reglas obligatorias:
 
-| Rol | Descripción | Permisos Clave |
-| :--- | :--- | :--- |
-| **👤 Ciudadano** | Habitante registrado del municipio. | Registrarse, iniciar trámites, adjuntar requisitos, consultar historial. |
-| **💼 Operador (Funcionario)** | Personal asignado a un departamento específico. | Ver solicitudes del área, cambiar estados (Aprobado/Rechazado), añadir notas. |
-| **⚙️ Administrador** | Personal de soporte técnico / informática. | Crear cuentas de operadores, gestionar departamentos, auditar bitácoras del sistema. |
+### A. Al entrar a la página (Seguridad)
+1.  **Cuentas únicas:** Para registrarse, el Ciudadano debe poner su cédula y su correo. El sistema no permite que dos personas usen la misma cédula o el mismo correo.
 
----
+2.  **Contraseñas secretas:** Las contraseñas no se guardan tal cual como las escribe el usuario. El sistema las "encripta" (las transforma en un código secreto) para que nadie pueda robárselas.
 
-## 🧠 3. Lógica de Negocio y Reglas del Software
+3.  **Bloqueo por seguridad:** Si alguien intenta adivinar una contraseña y se equivoca 5 veces seguidas, el sistema bloquea esa cuenta por 15 minutos.
 
-El desarrollo del software se rige estrictamente por las siguientes reglas operativas:
+### B. Al pedir un trámite o ayuda (Procesos)
 
-### A. Autenticación y Seguridad
-*   **Registro Público:** Los *Ciudadanos* se registran de forma autónoma. El sistema valida de forma única la **Cédula de Identidad** y el **Correo Electrónico** para evitar duplicados.
-  
-*   **Cuentas Institucionales:** Las cuentas de *Operadores* y *Administradores* no tienen registro público; son dadas de alta exclusivamente por el administrador para mitigar brechas de seguridad.
-  
-*   **Resguardo de Credenciales:** Ninguna contraseña se almacena en texto plano. Se implementará hashing mediante algoritmos seguros (ej. `bcrypt`) en la base de datos.
+1.  **Ticket de soporte:** Cuando un Ciudadano pide un trámite, el sistema le da un **Número de Seguimiento** único para que pueda ver cómo va su solicitud.
 
-### B. Flujo de Control de Trámites
+2.  **Envío automático:** Si el ciudadano pide una ayuda social, el sistema se la envía directamente a la oficina de Desarrollo Social. Si pide algo de terrenos, se va a Catastro.
 
-1.  **Creación:** Al iniciar un trámite, el sistema genera de forma automática un **Código de Seguimiento Único**.
-2.  **Enrutamiento:** La solicitud se indexa automáticamente al **Departamento** correspondiente (Catastro, Desarrollo Social, etc.) basándose en la tipología del trámite.
-3.  **Ciclo de Vida del Estado:** Los trámites inician en estado `Pendiente`. El operador puede cambiarlo a `En revisión`, `Subsanación` (espera de corrección del usuario), `Aprobado` o `Rechazado`.
-4.  **Inmutabilidad Histórica:** Una vez que un trámite alcanza un estado terminal (`Aprobado` o `Rechazado`), **ningún usuario** (incluido el operador) puede revertir o modificar dicho estado para salvaguardar la integridad de la auditoría.
+3.  **El camino del trámite:** El trabajador de la alcaldía recibe la solicitud y puede cambiar su estado a: `En revisión`, `Falta un documento`, `Aprobado` o `Rechazado`.
 
-### C. Auditoría y Transparencia
-*   Toda acción crítica (cambios de estado, asignaciones, creación de usuarios) genera un registro automático en una **tabla de auditoría (bitácora)** con la fecha, hora y el ID del usuario que realizó la acción.
+4.  **No hay vuelta atrás:** Una vez que el trabajador le da a "Aprobado" o "Rechazado", ese trámite se cierra y **nadie** lo puede volver a cambiar. Esto evita trampas.
+
+### C. Control de los Jefes
+
+1.  **Alerta de tardanza:** Si un trabajador deja una solicitud guardada por más de 2 días sin revisarla, el sistema le envía una alerta automática al **Jefe del Departamento** para avisarle que ese trabajador no está cumpliendo.
 
 ---
