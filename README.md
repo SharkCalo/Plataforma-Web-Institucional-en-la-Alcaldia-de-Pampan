@@ -1,42 +1,38 @@
-# 🏛️ Proyecto: Página Web para la Alcaldía
+# **🏛️ Título del Proyecto: Sistema de Gestión Institucional y Atención Ciudadana**
+# **📝 Descripción General**
+Es una plataforma web que digitaliza y automatiza los trámites internos y la atención al público en la alcaldía. Resuelve los retrasos, el uso excesivo de papel y la falta de información, ofreciendo una comunicación rápida y transparente entre los ciudadanos y las oficinas.
 
-Este proyecto es una página web para que los habitantes del municipio puedan hacer sus trámites y solicitudes desde la computadora o el teléfono, sin necesidad de hacer largas colas en la alcaldía.
+# **🎯 Objetivo Principal
+Modernizar la gestión municipal con un canal digital único que acelere las respuestas, asegure los datos y permita auditar todas las acciones del personal.
 
----
+# **👥 Usuarios Clave (Roles)**
+**👤 Ciudadano:**
+Se registra, inicia trámites, sube documentos y consulta el estado de su solicitud en tiempo real.
 
-## 👥 1. ¿Quiénes usan la página? (Roles)
+**💼 Operador (Funcionario):** 
+Revisa los requisitos de su departamento, procesa las solicitudes y actualiza sus estados.
 
-En el sistema existen tres tipos de usuarios:
+**👔 Jefe de Departamento (Director):** 
+Supervisa al personal y aprueba los trámites de alta prioridad.
 
-*   **👤 El Ciudadano :** Es cualquier persona del municipio. Entra a la página para pedir una ayuda, reportar un problema de luz/agua, o solicitar un permiso.
-*   **💼 Trabajador de la alcaldía:** Es la persona que trabaja en una oficina de la alcaldía (como Catastro o Desarrollo Social). Revisa lo que pidió el ciudadano y decide si lo aprueba o lo rechaza.
-*   **⚙️ El Administrador (El técnico):** Es la persona encargada de que la página funcione. Crea las cuentas de los trabajadores y registra las oficinas.
+**⚙️ Superadministrador / Auditor:** 
+Registra al personal, controla los accesos y vigila el comportamiento de todos los usuarios para evitar alteraciones.
 
----
+**🚀 Funcionalidades Principales (Alcance)**
+ **🔐 Registro y Control de Acceso:** 
+Creación de cuentas ciudadanas con cédula/correo y restricción de pantallas según el rol del usuario.
 
-## 🧠 2. ¿Cómo funciona el sistema? (Reglas de Negocio)
+**🛡️ Seguridad y Bloqueos:** 
+Bloqueo temporal de cuenta tras 5 intentos fallidos de clave y cierre de sesión por inactividad a los 20 minutos.
 
-Para que todo funcione en orden, el software sigue estas reglas obligatorias:
+**📂 Gestión de Trámites:**
+Envío de solicitudes con código de seguimiento único y enrutamiento automático al departamento correcto.
 
-### A. Al entrar a la página (Seguridad)
-1.  **Cuentas únicas:** Para registrarse, el Ciudadano debe poner su cédula y su correo. El sistema no permite que dos personas usen la misma cédula o el mismo correo.
+**🔄 Control de Estados:** 
+Actualización del trámite (En revisión, Subsanación, Aprobado o Rechazado). Al aprobarse o rechazarse, el estado no se puede volver a cambiar.
 
-2.  **Contraseñas secretas:** Las contraseñas no se guardan tal cual como las escribe el usuario. El sistema las "encripta" (las transforma en un código secreto) para que nadie pueda robárselas.
+**🚨 Alertas y Escalabilidad:**
+Alerta automática al Jefe si un trámite pasa 48 horas sin atender y retención de casos especiales hasta recibir autorización del Director General.
 
-3.  **Bloqueo por seguridad:** Si alguien intenta adivinar una contraseña y se equivoca 5 veces seguidas, el sistema bloquea esa cuenta por 15 minutos.
-
-### B. Al pedir un trámite o ayuda (Procesos)
-
-1.  **Ticket de soporte:** Cuando un Ciudadano pide un trámite, el sistema le da un **Número de Seguimiento** único para que pueda ver cómo va su solicitud.
-
-2.  **Envío automático:** Si el ciudadano pide una ayuda social, el sistema se la envía directamente a la oficina de Desarrollo Social. Si pide algo de terrenos, se va a Catastro.
-
-3.  **El camino del trámite:** El trabajador de la alcaldía recibe la solicitud y puede cambiar su estado a: `En revisión`, `Falta un documento`, `Aprobado` o `Rechazado`.
-
-4.  **No hay vuelta atrás:** Una vez que el trabajador le da a "Aprobado" o "Rechazado", ese trámite se cierra y **nadie** lo puede volver a cambiar. Esto evita trampas.
-
-### C. Control de los Jefes
-
-1.  **Alerta de tardanza:** Si un trabajador deja una solicitud guardada por más de 2 días sin revisarla, el sistema le envía una alerta automática al **Jefe del Departamento** para avisarle que ese trabajador no está cumpliendo.
-
----
+**👁️ Auditoría Permanente (Bitácora):**
+Registro automático e imborrable de cada acción crítica (usuario, fecha, hora y equipo) para la supervisión del Auditor.
